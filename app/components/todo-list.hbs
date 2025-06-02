@@ -1,0 +1,36 @@
+<div class="main-container">
+  <h1 class="headline">
+    TODO List
+  </h1>
+  <div class="container mid-container">
+    <input
+      placeholder="Task to be done..."
+      value={{this.temp}}
+      {{on "input" this.onAddingElements}}
+    />
+    <button onclick={{this.onAddClick}}>
+      <b class="btn-txt">Add</b>
+    </button>
+  </div>
+
+  <div class="last-container">
+    {{#each this.todoLists as |item index|}}
+      <div class="todo-item">
+        <p
+          class={{concat
+            "todo-text"
+            (if (eq this.deletedItem index) " deleted")
+          }}
+        >
+          {{item}}
+        </p>
+        <button {{on "click" (fn this.onDeleteClick index)}}>
+          <b class="btn-txt">Del</b>
+        </button>
+      </div>
+      <hr class="styled-hr" />
+      <br />
+    {{/each}}
+  </div>
+
+</div>
