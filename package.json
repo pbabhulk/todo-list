@@ -29,7 +29,7 @@
     "@babel/eslint-parser": "^7.25.1",
     "@babel/plugin-proposal-decorators": "^7.24.7",
     "@ember/optional-features": "^2.1.0",
-    "@ember/string": "^4.0.0",
+    "@ember/string": "^4.0.1",
     "@ember/test-helpers": "^3.3.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
@@ -47,9 +47,13 @@
     "ember-cli-terser": "^4.0.2",
     "ember-data": "~5.3.8",
     "ember-fetch": "^8.1.2",
+    "ember-headlessui": "^0.14.0",
     "ember-load-initializers": "^2.1.2",
     "ember-modifier": "^4.2.0",
     "ember-page-title": "^8.2.3",
+    "ember-power-calendar": "^1.5.4",
+    "ember-power-calendar-luxon": "^2.0.0",
+    "ember-power-calendar-moment": "^1.0.4",
     "ember-qunit": "^8.1.0",
     "ember-resolver": "^12.0.1",
     "ember-source": "~5.12.0",
@@ -77,5 +81,10 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "ember-modal-dialog": "^4.1.5",
+    "moment": "^2.30.1",
+    "sass": "^1.89.2"
   }
 }

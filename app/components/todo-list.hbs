@@ -1,36 +1,125 @@
-<div class="main-container">
-  <h1 class="headline">
-    TODO List
-  </h1>
-  <div class="container mid-container">
-    <input
-      placeholder="Task to be done..."
-      value={{this.temp}}
-      {{on "input" this.onAddingElements}}
-    />
-    <button onclick={{this.onAddClick}}>
-      <b class="btn-txt">Add</b>
-    </button>
+<div class="top-container">
+  <div class="main-container">
+    <h1 class="headline">
+      TODO List
+    </h1>
+    <div class="container mid-container">
+      <input
+        placeholder="Task to be done..."
+        value={{this.temp}}
+        {{on "input" this.onAddingElements}}
+      />
+      <button class="add-and-del" onclick={{this.onAddClick}}>
+        <b class="btn-txt">Add</b>
+      </button>
+    </div>
+
+    {{#if this.todoLists}}
+      <div class="last-container">
+        {{#each this.todoLists as |item index|}}
+          <div
+            class={{concat
+              "todo-item"
+              (if (includes this.selectedItem index) " item-selected")
+            }}
+            {{on "click" (fn this.onItemClick index item)}}
+          >
+            <p
+              class={{concat
+                "todo-text"
+                (if (includes this.deletedItem index) " deleted")
+              }}
+            >
+              {{item}}
+            </p>
+            <button
+              class="add-and-del"
+              {{on "click" (fn this.onDeleteClick index)}}
+            >
+              <b class="btn-txt">Del</b>
+            </button>
+          </div>
+          <hr class="styled-hr" />
+          {{! <br /> }}
+        {{/each}}
+      </div>
+    {{/if}}
+
   </div>
 
-  <div class="last-container">
-    {{#each this.todoLists as |item index|}}
-      <div class="todo-item">
-        <p
-          class={{concat
-            "todo-text"
-            (if (eq this.deletedItem index) " deleted")
-          }}
-        >
-          {{item}}
-        </p>
-        <button {{on "click" (fn this.onDeleteClick index)}}>
-          <b class="btn-txt">Del</b>
+  <div class="right-container">
+    <div class="container side-container">
+      <h1>
+        {{this.todoItemSelected}}
+      </h1>
+      <div class="item-headline-container">
+        <button class="todo-item-btn" {{on "click" this.onRemindBtnClick}}>
+          <span class="cA1YqBj5UcmbLNiEwbWJ"><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="none"
+              viewBox="0 0 18 18"
+            ><path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.4"
+                d="M13.5 6.45c0-2.32-2.015-4.2-4.5-4.2s-4.5 1.88-4.5 4.2c0 4.9-2.25 6.3-2.25 6.3h13.5s-2.25-1.4-2.25-6.3M11.25 15.75c-.388.464-1.102.75-1.875.75-.773 0-1.487-.286-1.875-.75"
+              ></path></svg></span>
+          Remind me
+        </button>
+        <button class="todo-item-btn">
+          <span class="nqA3rO0TmHImTKckKNaF"><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="3 3 18 18"
+            ><defs><path
+                  id="svg-3041701476-__a"
+                  d="M17.2 3.2a2.4 2.4 0 0 1 2.4 2.4v12.8a2.4 2.4 0 0 1-2.4 2.4H7.6a2.4 2.4 0 0 1-2.4-2.4V5.6a2.4 2.4 0 0 1 2.4-2.4zm0 1.6H7.6a.8.8 0 0 0-.8.8v12.8a.8.8 0 0 0 .8.8h9.6a.8.8 0 0 0 .8-.8V5.6a.8.8 0 0 0-.8-.8zm-1.6 10.4a.8.8 0 0 1 .1 1.594l-.1.006H9.2a.8.8 0 0 1-.1-1.594l.1-.006h6.4zm0-3.2a.8.8 0 0 1 .1 1.594l-.1.006H9.2a.8.8 0 0 1-.1-1.594L9.2 12h6.4zm-4.8-3.2a.8.8 0 0 1 .1 1.594l-.1.006H9.2a.8.8 0 0 1-.1-1.594l.1-.006h1.6z"
+                ></path></defs><use
+                xlink:href="#svg-3041701476-__a"
+                fill="currentColor"
+                fill-rule="nonzero"
+              ></use></svg></span>
+          Personal
+        </button>
+        <button class="todo-item-btn">
+          <span class="SKenCKUAuih341mv2tje"><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="none"
+              viewBox="0 0 16 16"
+            ><path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.2"
+                d="M2.727 6H14M11 2.5l-2 11M7 2.5l-2 11M2 10h11.273"
+              ></path></svg></span>
+          Tags
         </button>
       </div>
-      <hr class="styled-hr" />
-      <br />
-    {{/each}}
+      {{#if this.isReminderOpen}}
+        <div class="abc">
+          <PowerCalendar @selected={{this.today}} as |calendar|>
+            <calendar.Nav />
+            <calendar.Days />
+          </PowerCalendar>
+        </div>
+      {{/if}}
+      <div>
+        <h4>NOTES</h4>
+        <textarea
+          maxlength="65535"
+          placeholder="Insert your notes here"
+          style="height: 21px;"
+        ></textarea>
+        <h4>SUBTASKS</h4>
+        <button class="add-subitem-btn">Add a new subtask</button>
+      </div>
+    </div>
   </div>
-
 </div>

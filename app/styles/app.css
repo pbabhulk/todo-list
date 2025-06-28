@@ -1,12 +1,30 @@
-.main-container {
-  margin: 10px;
-  padding: 20px;
-  /* background-color: plum; */
+body {
+  overflow-x: hidden;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   background: linear-gradient(135deg, #8052ec, #d161ff);
 }
 
+.main-container {
+  width: 50%;
+  margin: 10px;
+  padding: 20px;
+  /* background: linear-gradient(135deg, #8052ec, #d161ff); */
+}
+
+.right-container {
+  width: 50%;
+  margin: 10px;
+  padding: 20px;
+  /* background: linear-gradient(135deg, #8052ec, #d161ff); */
+}
+
 .headline {
-  text-align: center;
+  text-align: left;
   color: white;
 }
 
@@ -16,7 +34,8 @@
   justify-content: center;
   background: white;
   border-radius: 10px;
-  margin: 0 400px;
+  padding: 10px;
+  margin: 0 100px 0 0;
 }
 
 .mid-container {
@@ -26,15 +45,31 @@
 .last-container {
   background: white;
   border-radius: 10px;
-  margin: 0 400px;
+  margin: 0 100px 0 0;
   margin-top: 20px;
+  padding: 10px 0;
 }
 
 .mid-headline {
   padding-right: 20px;
 }
 
-button {
+.item-selected {
+  box-shadow:
+    0 2px 18px 0 rgba(0, 0, 0, 0.4),
+    0 1px 4px 0 rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.item-selected:hover {
+  background-color: #5a34b3; /* darker version */
+}
+
+.todo-item:hover {
+  background-color: rgba(0, 0, 0, 0.04); /* changes on hover */
+}
+
+.add-and-del {
   width: 60px;
   height: 40px;
   text-align: center;
@@ -60,6 +95,9 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 10px;
 }
 
 .todo-text {
@@ -75,4 +113,73 @@ input {
 
 .deleted {
   text-decoration: line-through;
+}
+
+.side-container {
+  width: 600px;
+  height: 500px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.item-headline-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 600px;
+}
+
+.todo-item-btn {
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  border-radius: 20px;
+  border-width: 0px;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow:
+    0 2px 18px 0 rgba(0, 0, 0, 0.2),
+    0 1px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.add-subitem-btn {
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  border-width: 0px;
+  background-color: white;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 2px 18px 0 rgba(0, 0, 0, 0.1),
+    0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.cA1YqBj5UcmbLNiEwbWJ {
+  margin-top: 8px;
+  margin-right: 8px;
+  color: #ff6168;
+}
+
+.nqA3rO0TmHImTKckKNaF {
+  margin-top: 8px;
+  margin-right: 8px;
+  color: #f5a623;
+}
+
+.SKenCKUAuih341mv2tje {
+  color: #0083ff;
+}
+
+.todo-desc {
+}
+
+.abc {
+  align-items: center;
+  justify-content: center;
 }
