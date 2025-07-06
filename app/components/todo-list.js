@@ -40,6 +40,14 @@ export default class TodoList extends Component {
   }
 
   @action
+  handleAddKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.onAddClick();
+    }
+  }
+
+
+  @action
   onSubItemInput(event) {
     this.subItem = event.target.value;
   }

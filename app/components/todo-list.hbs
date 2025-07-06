@@ -8,6 +8,7 @@
         placeholder="Task to be done..."
         value={{this.temp}}
         {{on "input" this.onAddingElements}}
+        {{on "keydown" this.handleAddKeyPress}}
       />
       <button class="add-and-del" onclick={{this.onAddClick}}>
         <b class="btn-txt">Add</b>
