@@ -251,10 +251,48 @@
         </div>
         {{#if this.isReminderOpen}}
           <div class="abc">
-            <PowerCalendar @selected={{this.today}} as |calendar|>
+            <div>
+              <h2 class="reminder-title">Reminder</h2>
+            </div>
+            <div class="item-headline-container">
+              <h3>
+                Date
+              </h3>
+              <h3>
+                Time
+              </h3>
+            </div>
+            <div class="item-headline-container">
+              <input
+                class="date-and-time-input"
+                value={{moment-format-date this.selectedDate}}
+              />
+              <input
+                class="date-and-time-input"
+                value={{moment-format-time this.selectedDate}}
+              />
+            </div>
+            <PowerCalendar
+              @selected={{this.selectedDate}}
+              @onSelect={{this.handleOnSelect}}
+              @disabled={{this.isDisabled}}
+              as |calendar|
+            >
               <calendar.Nav />
               <calendar.Days />
             </PowerCalendar>
+            <div class="item-headline-container">
+              <button>
+                <h3>
+                  Cancel
+                </h3>
+              </button>
+              <button>
+                <h3 style="color: cornflowerblue;">
+                  Set
+                </h3>
+              </button>
+            </div>
           </div>
         {{/if}}
         <div>

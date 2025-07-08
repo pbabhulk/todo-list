@@ -13,7 +13,7 @@ export default class TodoList extends Component {
   deletedSubItems = new TrackedArray([]);
   @tracked todoItemSelected;
   @tracked subItemSelected;
-  @tracked today = moment();
+  @tracked selectedDate = moment();
   @tracked isReminderOpen = false;
   @tracked selectedItemIndex;
   @tracked selectedSubItemIndex;
@@ -24,13 +24,28 @@ export default class TodoList extends Component {
   @tracked notes = new TrackedObject({});
   @tracked note;
 
+  @tracked currentTime = moment().format('YYYY-MM-DD HH:mm').split(' ');
+
   @action
   onRemindBtnClick() {
     this.isReminderOpen = true;
   }
 
   @action
+  handleOnSelect({ date }) {
+    this.selectedDate = date;
+  }
+
+  @action
+  isDisabled(date) {
+    console.log(date, 'date is printed');
+    return moment(date).isBefore(moment(), 'day');
+  }
+
+  @action
   onAddClick() {
+    console.log(this.today, 'this.today is printed');
+    console.log(this.currentTime, 'currentTime');
     this.todoLists.push(this.temp);
     this.temp = '';
     if (this.todoLists.length === 1) {
@@ -45,7 +60,6 @@ export default class TodoList extends Component {
       this.onAddClick();
     }
   }
-
 
   @action
   onSubItemInput(event) {
